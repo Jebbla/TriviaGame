@@ -1,6 +1,6 @@
 body{
     font-size: 20px;
-    font-family: monospace;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #container{
@@ -25,7 +25,6 @@ body{
     left:300px;
     top:50px;
     color : black;
-  
 }
 #start:hover{
     border: 3px solid black;
@@ -98,7 +97,7 @@ body{
 #timeGauge{
     height : 10px;
     border-radius: 10px;
-    background-color: mediumseagreen;
+    background-color: black;
     margin-top : -10px;
     margin-left : 25px;
 }

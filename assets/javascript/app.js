@@ -1,4 +1,4 @@
-// select all elements
+//  elements
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
@@ -11,7 +11,7 @@ const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 
-// create our questions
+// questions
 let questions= [
     {
         question : "Who created Buffy the Vampire Slayer?",
@@ -95,18 +95,18 @@ let questions= [
     },
 ]
 
-// create some variables
+
 
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 10; // 10s
+const questionTime = 20; // 20s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
 
-// render a question
+
 function renderQuestion(){
     let q = questions[runningQuestion];
     
@@ -129,14 +129,12 @@ function startQuiz(){
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
 
-// render progress
+
 function renderProgress(){
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
 }
-
-// counter render
 
 function renderCounter(){
     if(count <= questionTime){
@@ -145,20 +143,16 @@ function renderCounter(){
         count++
     }else{
         count = 0;
-        // change progress color to red
         answerIsWrong();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
             renderQuestion();
         }else{
-            // end the quiz and show the score
             clearInterval(TIMER);
             scoreRender();
         }
     }
 }
-
-// checkAnwer
 
 function checkAnswer(answer){
     if( answer == questions[runningQuestion].correct){
@@ -182,29 +176,24 @@ function checkAnswer(answer){
     }
 }
 
-// answer is correct
 function answerIsCorrect(){
     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
 }
 
-// answer is Wrong
 function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
-// score render
 function scoreRender(){
     scoreDiv.style.display = "block";
     
-    // calculate the amount of question percent answered by the user
     const scorePerCent = Math.round(100 * score/questions.length);
-    
-    // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "assets/images/5.png" :
-              (scorePerCent >= 60) ? "assets/images/4.png" :
-              (scorePerCent >= 40) ? "assets/images/3.png" :
-              (scorePerCent >= 20) ? "assets/images/2.png" :
-              "";
+   
+    let img = (scorePerCent >= 80) ? "assets/images/scythe.png" :
+              (scorePerCent >= 60) ? "assets/images/stake.jpg" :
+              (scorePerCent >= 40) ? "assets/images/crossbow.jpg" :
+              (scorePerCent >= 20) ? "assets/images/buffylogo.jpg" :
+              "assets/images/mutantenemy.png";
     
     scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
